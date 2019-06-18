@@ -1,30 +1,36 @@
 package com.movies.cleanarchlistofmovies
 
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import com.movies.cleanarchlistofmovies.domain.usecase.DiscoverMovies
+import android.widget.Toast
+import com.movies.cleanarchlistofmovies.presentation.BaseActivity
+import com.movies.cleanarchlistofmovies.presentation.MainViewModel
+import com.movies.cleanarchlistofmovies.presentation.extensions.observe
 import dagger.android.AndroidInjection
-import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
-    @Inject
-    lateinit var discoverMovies: DiscoverMovies
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mainViewModel = viewModel(viewModelFactory) {
+            observe(listOfShows, ::onGetMoviesAndTVShows)
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        discoverMovies().subscribe({ list ->
-            Log.i("main", "size ${list.size}")
-            Log.i("main", "error")
-        }, {
-            Log.e("main", it.message)
-        })
+        mainViewModel.getMoviesAndTVShows()
+    }
+
+    fun onGetMoviesAndTVShows(result: String?) {
+        Toast.makeText(this, result, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mainViewModel.dispose()
     }
 }

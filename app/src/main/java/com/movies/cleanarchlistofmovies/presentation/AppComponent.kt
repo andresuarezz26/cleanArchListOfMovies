@@ -6,6 +6,7 @@ import com.movies.cleanarchlistofmovies.data.di.ApiModule
 import com.movies.cleanarchlistofmovies.data.di.RepositoryModule
 import com.movies.cleanarchlistofmovies.data.di.ServiceModule
 import com.movies.cleanarchlistofmovies.presentation.di.ActivityInjectors
+import com.movies.cleanarchlistofmovies.presentation.di.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -17,7 +18,8 @@ import dagger.android.support.AndroidSupportInjectionModule
             RepositoryModule::class,
             ServiceModule::class,
             ApiModule::class,
-            ActivityInjectors::class]
+            ActivityInjectors::class,
+            ViewModelModule::class]
 )
 interface AppComponent {
 
