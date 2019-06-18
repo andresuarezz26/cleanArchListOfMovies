@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_list_height">150dp</dimen>
+    <dimen name="margin_image_list">26dp</dimen>
+    <dimen name="general_margin_8">8dp</dimen>
+    <dimen name="strip_width_short">1dp</dimen>
+</resources>

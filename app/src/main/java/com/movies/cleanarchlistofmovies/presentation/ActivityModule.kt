@@ -1,6 +1,6 @@
 package com.movies.cleanarchlistofmovies.presentation
 
-import com.movies.cleanarchlistofmovies.MainActivity
+import com.movies.cleanarchlistofmovies.presentation.activity.MainActivity
 import dagger.Module
 
 @Module

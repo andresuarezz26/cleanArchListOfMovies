@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CleanArchListOfMovies</string>
+    <string name="no_description">no content description</string>
 </resources>

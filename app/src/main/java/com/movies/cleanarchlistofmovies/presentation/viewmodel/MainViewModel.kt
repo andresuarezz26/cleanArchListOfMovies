@@ -1,11 +1,11 @@
-package com.movies.cleanarchlistofmovies.presentation
+package com.movies.cleanarchlistofmovies.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
 import com.movies.cleanarchlistofmovies.domain.usecase.DiscoverTVShowAndMovies
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
@@ -14,16 +14,16 @@ class MainViewModel @Inject constructor(
 
     private val composite: CompositeDisposable = CompositeDisposable()
 
-    var listOfShows = MutableLiveData<String>()
+    var listOfShows = MutableLiveData<List<ResultTVMovies>>()
 
     fun getMoviesAndTVShows() {
-        discoverMoviesAndTV()
-                .observeOn(Schedulers.io())
+        composite.add(discoverMoviesAndTV(DiscoverTVShowAndMovies.Param("popularity.asc"))
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list ->
-                    listOfShows.value = "hola"
+                    listOfShows.value = list
                 }, {
-                    Log.e("main", it.message)
-                })
+                    listOfShows.value = listOf()
+                }))
     }
 
     fun dispose() {

@@ -1,7 +1,9 @@
 package com.movies.cleanarchlistofmovies.data.mapper
 
+import com.movies.cleanarchlistofmovies.data.ImageUtils
 import com.movies.cleanarchlistofmovies.data.responses.ResultsMovieTVShowResponse
-import com.movies.cleanarchlistofmovies.domain.ResultsMovieTVShow
+import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -15,15 +17,19 @@ import org.mockito.MockitoAnnotations
 
 class ResultMovieTVShowResponseMapperTest {
 
-    @InjectMocks
-    private lateinit var mapper: ResultMovieTVShowResponseMapper
-
     @Mock
     private lateinit var input: ResultsMovieTVShowResponse
+
+    @Mock
+    private lateinit var imageUtil: ImageUtils
+
+    @InjectMocks
+    private lateinit var mapper: ResultMovieTVShowResponseMapper
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
+        whenever(imageUtil.getUrl(any())).thenReturn(MOCK_URL)
     }
 
     @Test
@@ -48,7 +54,7 @@ class ResultMovieTVShowResponseMapperTest {
         compare(input, output)
     }
 
-    private fun compare(input: ResultsMovieTVShowResponse, output: ResultsMovieTVShow?) {
+    private fun compare(input: ResultsMovieTVShowResponse, output: ResultTVMovies?) {
         if (output == null) {
             fail()
             return
@@ -58,7 +64,7 @@ class ResultMovieTVShowResponseMapperTest {
         assertEquals(input.video, output.video)
         assertEquals(input.title, output.title)
         assertEquals(input.voteAverage, output.voteAverage, 0.1)
-        assertEquals(input.posterPath, output.posterPath)
+        assertEquals(MOCK_URL, output.posterPath)
         assertEquals(input.overview, output.overview)
     }
 
@@ -68,5 +74,9 @@ class ResultMovieTVShowResponseMapperTest {
         val output = mapper.transform(inputList)
         assertNotNull(output)
         assertEquals(0, output.size)
+    }
+
+    companion object {
+        private const val MOCK_URL = "URL"
     }
 }

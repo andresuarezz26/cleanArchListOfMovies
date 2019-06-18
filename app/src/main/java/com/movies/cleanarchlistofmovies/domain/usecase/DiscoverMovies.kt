@@ -1,10 +1,11 @@
 package com.movies.cleanarchlistofmovies.domain.usecase
 
-import com.movies.cleanarchlistofmovies.domain.ResultsMovieTVShow
-import com.movies.cleanarchlistofmovies.domain.repositories.DiscoverMoviesRepo
+import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
+import com.movies.cleanarchlistofmovies.domain.repositories.DiscoverMoviesRepoFacade
 import io.reactivex.Single
 import javax.inject.Inject
 
-class DiscoverMovies @Inject constructor(private val repo: DiscoverMoviesRepo) {
-    operator fun invoke(): Single<List<ResultsMovieTVShow>> = repo()
+class DiscoverMovies @Inject constructor(private val repo: DiscoverMoviesRepoFacade) {
+    operator fun invoke(): Single<List<ResultTVMovies>>
+            = repo()
 }

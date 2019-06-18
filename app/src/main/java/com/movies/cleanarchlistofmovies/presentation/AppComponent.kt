@@ -3,6 +3,7 @@ package com.movies.cleanarchlistofmovies.presentation
 import android.app.Application
 import com.movies.cleanarchlistofmovies.MovieApp
 import com.movies.cleanarchlistofmovies.data.di.ApiModule
+import com.movies.cleanarchlistofmovies.data.di.DataSourceModule
 import com.movies.cleanarchlistofmovies.data.di.RepositoryModule
 import com.movies.cleanarchlistofmovies.data.di.ServiceModule
 import com.movies.cleanarchlistofmovies.presentation.di.ActivityInjectors
@@ -19,7 +20,8 @@ import dagger.android.support.AndroidSupportInjectionModule
             ServiceModule::class,
             ApiModule::class,
             ActivityInjectors::class,
-            ViewModelModule::class]
+            ViewModelModule::class,
+            DataSourceModule::class]
 )
 interface AppComponent {
 

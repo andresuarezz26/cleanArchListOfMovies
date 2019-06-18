@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".presentation.activity.MainActivity">
+
+        <ImageView
+            android:id="@+id/imageDetailPoster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_image_list"
+            android:layout_marginTop="@dimen/general_margin_8"
+            android:layout_marginEnd="@dimen/margin_image_list"
+            android:contentDescription="@string/no_description" />
+
+        <TextView
+            android:id="@+id/textDetailTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            tools:text="Mock Title for a Show" />
+
+        <TextView
+            android:id="@+id/textDetailOverview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="This is a description of how to get away with murder series tv show can increase the populality" />
+
+        <TextView
+            android:id="@+id/textDetailVoteAverage"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="8.5" />
+    </LinearLayout>
+</ScrollView>

@@ -1,7 +1,7 @@
 package com.movies.cleanarchlistofmovies.data.di
 
-import com.movies.cleanarchlistofmovies.data.repositories.DiscoverMoviesRepoImpl
-import com.movies.cleanarchlistofmovies.domain.repositories.DiscoverMoviesRepo
+import com.movies.cleanarchlistofmovies.data.repositories.DiscoverMoviesRepo
+import com.movies.cleanarchlistofmovies.domain.repositories.DiscoverMoviesRepoFacade
 import dagger.Binds
 import dagger.Module
 
@@ -9,5 +9,5 @@ import dagger.Module
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun provideDiscoverMovies(impl: DiscoverMoviesRepoImpl): DiscoverMoviesRepo
+    abstract fun provideDiscoverMovies(impl: DiscoverMoviesRepo): DiscoverMoviesRepoFacade
 }

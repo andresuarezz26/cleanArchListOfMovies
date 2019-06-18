@@ -1,4 +1,4 @@
-package com.movies.cleanarchlistofmovies.presentation
+package com.movies.cleanarchlistofmovies.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.movies.cleanarchlistofmovies.RxImmediateSchedulerRule
@@ -29,7 +29,7 @@ class MainViewModelTest {
 
     @Test
     fun `When getTVAndMovies get called and there are tv shows or movies, set value of observer`() {
-        whenever(discoverTVShowsAndMovies()).thenReturn(Single.just(listOf()))
+        whenever(discoverTVShowsAndMovies(DiscoverTVShowAndMovies.Param("popularity.asc"))).thenReturn(Single.just(listOf()))
 
         mainViewModel.getMoviesAndTVShows()
 

@@ -1,6 +1,6 @@
 package com.movies.cleanarchlistofmovies.domain
 
-data class ResultsMovieTVShow(
+data class ResultTVMovies(
         val voteCount: Int,
         val id: Int,
         val video: Boolean,

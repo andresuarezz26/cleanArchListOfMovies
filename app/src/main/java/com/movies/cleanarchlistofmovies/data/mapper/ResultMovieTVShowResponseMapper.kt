@@ -1,19 +1,20 @@
 package com.movies.cleanarchlistofmovies.data.mapper
 
+import com.movies.cleanarchlistofmovies.data.ImageUtils
 import com.movies.cleanarchlistofmovies.data.responses.ResultsMovieTVShowResponse
-import com.movies.cleanarchlistofmovies.domain.ResultsMovieTVShow
+import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
 import javax.inject.Inject
 
-class ResultMovieTVShowResponseMapper @Inject constructor() : BaseListMapper<ResultsMovieTVShowResponse, ResultsMovieTVShow>() {
+class ResultMovieTVShowResponseMapper @Inject constructor(private val imageUtils: ImageUtils) : BaseListMapper<ResultsMovieTVShowResponse, ResultTVMovies>() {
 
-    override fun transform(input: ResultsMovieTVShowResponse?): ResultsMovieTVShow? {
+    override fun transform(input: ResultsMovieTVShowResponse?): ResultTVMovies? {
         return input?.let {
-            val output = ResultsMovieTVShow(input.voteCount,
+            val output = ResultTVMovies(input.voteCount,
                     input.id,
                     input.video,
                     input.voteAverage,
                     input.title,
-                    input.posterPath,
+                    imageUtils.getUrl(input.posterPath),
                     input.overview)
             output
         }
