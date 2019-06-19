@@ -4,10 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
 import com.movies.cleanarchlistofmovies.domain.usecase.DiscoverTVShowAndMoviesByCategory
-import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
@@ -25,15 +23,6 @@ class MainViewModel @Inject constructor(
                         { listOfShows.value = it },
                         { listOfShows.value = listOf() }
                 ))
-
-        /*
-
-       .subscribe({ list ->
-                        listOfShows.value = list
-                    }, {
-                        listOfShows.value = listOf()
-                    }))
-         */
     }
 
     fun dispose() {
