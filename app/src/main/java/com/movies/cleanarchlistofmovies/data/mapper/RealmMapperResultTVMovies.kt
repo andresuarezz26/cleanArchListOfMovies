@@ -7,14 +7,18 @@ import javax.inject.Inject
 
 class RealmMapperResultTVMovies @Inject constructor() {
 
-    fun transform(input: ResultTVMovies): RealmResultTVMovies {
+    fun transform(input: ResultTVMovies,
+                  category: String,
+                  typeOfShow: String): RealmResultTVMovies {
         return RealmResultTVMovies(input.voteCount,
                 input.id,
                 input.video,
                 input.voteAverage,
                 input.title,
                 input.posterPath,
-                input.overview)
+                input.overview,
+                category,
+                typeOfShow)
     }
 
     fun transform(input: RealmResultTVMovies): ResultTVMovies {

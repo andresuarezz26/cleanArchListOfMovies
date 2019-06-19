@@ -1,6 +1,6 @@
 package com.movies.cleanarchlistofmovies.domain.usecase
 
-import com.movies.cleanarchlistofmovies.domain.repositories.DiscoverMoviesRepoFacade
+import com.movies.cleanarchlistofmovies.domain.repositories.DiscoverMoviesTVRepoFacade
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
@@ -13,7 +13,7 @@ import org.mockito.MockitoAnnotations
 class DiscoverMoviesTest {
 
     @Mock
-    private lateinit var repo: DiscoverMoviesRepoFacade
+    private lateinit var repo: DiscoverMoviesTVRepoFacade
     @InjectMocks
     private lateinit var useCase: DiscoverTVShowAndMoviesByCategory
 

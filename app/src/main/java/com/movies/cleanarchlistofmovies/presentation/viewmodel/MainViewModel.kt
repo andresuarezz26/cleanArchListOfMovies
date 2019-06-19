@@ -19,27 +19,12 @@ class MainViewModel @Inject constructor(
     var listOfShows = MutableLiveData<List<ResultTVMovies>>()
 
     fun getMoviesAndTVShows(category: String) {
-        if (!composite.isDisposed) {
-            val observer = object : SingleObserver<List<ResultTVMovies>> {
-
-                override fun onSuccess(t: List<ResultTVMovies>) {
-                    listOfShows.value = t
-                }
-
-                override fun onSubscribe(d: Disposable) {
-                    //Do Nothing...
-                }
-
-                override fun onError(e: Throwable) {
-                    listOfShows.value = listOf()
-                }
-
-            }
-            discoverMoviesAndTV(DiscoverTVShowAndMoviesByCategory.Param(category))
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(observer)
-
-        }
+        composite.add(discoverMoviesAndTV(DiscoverTVShowAndMoviesByCategory.Param(category))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { listOfShows.value = it },
+                        { listOfShows.value = listOf() }
+                ))
 
         /*
 

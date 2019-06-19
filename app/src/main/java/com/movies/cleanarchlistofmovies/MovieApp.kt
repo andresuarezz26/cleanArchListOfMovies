@@ -41,7 +41,7 @@ class MovieApp : Application(), HasActivityInjector {
 
     private fun setRealmConfiguration() {
         val realmConfiguration = RealmConfiguration.Builder()
-                .schemaVersion(1)
+                .schemaVersion(2)
                 .build()
 
         Realm.setDefaultConfiguration(realmConfiguration)

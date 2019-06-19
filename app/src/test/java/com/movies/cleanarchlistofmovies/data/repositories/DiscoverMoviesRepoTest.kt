@@ -2,9 +2,8 @@ package com.movies.cleanarchlistofmovies.data.repositories
 
 import com.movies.cleanarchlistofmovies.RxImmediateSchedulerRule
 import com.movies.cleanarchlistofmovies.data.datasource.ResultTVMovieDataSourceFacade
-import com.movies.cleanarchlistofmovies.data.service.DiscoverService
+import com.movies.cleanarchlistofmovies.data.service.DiscoverServiceFacade
 import com.movies.cleanarchlistofmovies.data.service.DiscoverServiceFacade.Companion.MOVIE_SHOW
-import com.movies.cleanarchlistofmovies.data.service.DiscoverServiceFacade.Companion.TV_SHOW
 import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.verify
@@ -23,7 +22,7 @@ class DiscoverMoviesRepoTest {
     @Rule @JvmField var testSchedulerRule = RxImmediateSchedulerRule()
 
     @Mock
-    private lateinit var discoverService: DiscoverService
+    private lateinit var discoverService: DiscoverServiceFacade
 
     @Mock
     private lateinit var dataSource: ResultTVMovieDataSourceFacade
@@ -39,21 +38,19 @@ class DiscoverMoviesRepoTest {
     @Test
     fun `When there are data on service, save in the database a combination of the two observables`() {
         val list = listOf(resultMovies1, resultMovies2)
-        whenever(discoverService(TV_SHOW, MOCK_CATEGORY)).thenReturn(Single.just(list))
         whenever(discoverService(MOVIE_SHOW, MOCK_CATEGORY)).thenReturn(Single.just(list))
 
         repo(MOCK_CATEGORY).test().assertOf {
-            assertEquals(4, it.values().getOrNull(0)?.size)
-            verify(dataSource).createOrUpdate(any())
+            assertEquals(2, it.values().getOrNull(0)?.size)
+            verify(dataSource).createOrUpdate(any(), any(), any())
         }
     }
 
     @Test
     fun `When the service fails, get the data from database`() {
         val list = listOf(resultMovies1, resultMovies2)
-        whenever(discoverService(TV_SHOW, MOCK_CATEGORY)).thenReturn(Single.error(Throwable()))
         whenever(discoverService(MOVIE_SHOW, MOCK_CATEGORY)).thenReturn(Single.error(Throwable()))
-        whenever(dataSource.getAll()).thenReturn(list)
+        whenever(dataSource.getAllByCategory(MOVIE_SHOW, MOCK_CATEGORY)).thenReturn(list)
 
         repo(MOCK_CATEGORY).test().assertOf {
             assertEquals(2, it.values().getOrNull(0)?.size)

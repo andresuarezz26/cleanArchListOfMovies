@@ -56,8 +56,8 @@ class MainActivity : BaseActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.position?.let {
                     when (it) {
-                        1 -> viewModel.getMoviesAndTVShows(Constants.CATEGORY_POPULAR)
-                        2 -> viewModel.getMoviesAndTVShows(Constants.CATEGORY_TOP_RATED)
+                        0 -> viewModel.getMoviesAndTVShows(Constants.CATEGORY_POPULAR)
+                        1 -> viewModel.getMoviesAndTVShows(Constants.CATEGORY_TOP_RATED)
                         else -> viewModel.getMoviesAndTVShows(Constants.CATEGORY_RELEASE_DATE)
                     }
                 }

@@ -8,19 +8,26 @@ import io.realm.RealmResults
 import javax.inject.Inject
 
 interface ResultTVMovieDataSourceFacade {
-    fun createOrUpdate(list: List<ResultTVMovies>)
+    fun createOrUpdate(list: List<ResultTVMovies>,
+                       category: String,
+                       typeOfShow: String)
+
     fun getById(id: Int): ResultTVMovies?
-    fun getAll(): List<ResultTVMovies>
+    fun getAllByCategory(typeOfShow: String, category: String): List<ResultTVMovies>
 }
 
 class RealmResultTVMovieDataSource @Inject constructor(
         private val mapper: RealmMapperResultTVMovies
 ) : ResultTVMovieDataSourceFacade {
 
-    override fun createOrUpdate(list: List<ResultTVMovies>) {
+    override fun createOrUpdate(
+            list: List<ResultTVMovies>,
+            category: String,
+            typeOfShow: String
+    ) {
         Realm.getDefaultInstance().executeTransaction { realm ->
             list.forEach {
-                realm.copyToRealmOrUpdate(mapper.transform(it))
+                realm.copyToRealmOrUpdate(mapper.transform(it, category, typeOfShow))
             }
         }
     }
@@ -33,9 +40,12 @@ class RealmResultTVMovieDataSource @Inject constructor(
                 return output?.let { mapper.transform(output) }
             }
 
-    override fun getAll(): List<ResultTVMovies> {
+    override fun getAllByCategory(typeOfShow: String, category: String): List<ResultTVMovies> {
         Realm.getDefaultInstance().use { realmInstance ->
-            val output: RealmResults<RealmResultTVMovies> = realmInstance.where(RealmResultTVMovies::class.java)
+            val output: RealmResults<RealmResultTVMovies> = realmInstance
+                    .where(RealmResultTVMovies::class.java)
+                    .equalTo(RealmResultTVMovies.CATEGORY, category)
+                    .equalTo(RealmResultTVMovies.TYPE_OF_SHOW, typeOfShow)
                     .findAll()
             return mapper.transform(output)
         }

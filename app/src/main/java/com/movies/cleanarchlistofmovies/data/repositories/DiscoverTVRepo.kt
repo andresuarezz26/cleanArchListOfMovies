@@ -3,20 +3,20 @@ package com.movies.cleanarchlistofmovies.data.repositories
 import com.movies.cleanarchlistofmovies.data.datasource.ResultTVMovieDataSourceFacade
 import com.movies.cleanarchlistofmovies.data.service.DiscoverServiceFacade
 import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
-import com.movies.cleanarchlistofmovies.domain.repositories.DiscoverMoviesRepoFacade
+import com.movies.cleanarchlistofmovies.domain.repositories.DiscoverTVRepoFacade
 import io.reactivex.Single
 import javax.inject.Inject
 
-class DiscoverMoviesRepo @Inject constructor(
+class DiscoverTVRepo @Inject constructor(
         private val service: DiscoverServiceFacade,
         private val dataSource: ResultTVMovieDataSourceFacade
-) : DiscoverMoviesRepoFacade {
+) : DiscoverTVRepoFacade {
     override fun invoke(category: String): Single<List<ResultTVMovies>> {
-        return service(DiscoverServiceFacade.MOVIE_SHOW, category)
-                .doOnSuccess { dataSource.createOrUpdate(it, category, DiscoverServiceFacade.MOVIE_SHOW) }
+        return service(DiscoverServiceFacade.TV_SHOW, category)
+                .doOnSuccess { dataSource.createOrUpdate(it, category, DiscoverServiceFacade.TV_SHOW) }
                 .onErrorResumeNext {
                     Single.just(dataSource.getAllByCategory(
-                            DiscoverServiceFacade.MOVIE_SHOW, category))
+                            DiscoverServiceFacade.TV_SHOW, category))
                 }
     }
 }

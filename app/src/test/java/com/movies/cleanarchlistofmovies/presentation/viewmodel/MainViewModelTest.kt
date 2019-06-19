@@ -31,8 +31,12 @@ class MainViewModelTest {
     fun `When getTVAndMovies get called and there are tv shows or movies, set value of observer`() {
         whenever(discoverTVShowsAndMovies(DiscoverTVShowAndMoviesByCategory.Param("popularity.asc"))).thenReturn(Single.just(listOf()))
 
-        mainViewModel.getMoviesAndTVShows()
+        mainViewModel.getMoviesAndTVShows(MOCK_CATEGORY)
 
         Assert.assertEquals(mainViewModel.listOfShows.value, "hola")
+    }
+
+    companion object {
+        const val MOCK_CATEGORY: String = "popular"
     }
 }

@@ -10,9 +10,13 @@ open class RealmResultTVMovies(
         var voteAverage: Double = 0.0,
         var title: String? = null,
         var posterPath: String? = null,
-        var overview: String? = null
+        var overview: String? = null,
+        var category: String? = null,
+        var typeOfShow: String? = null
 ) : RealmObject() {
     companion object {
         const val PRIMARY_KEY = "id"
+        const val CATEGORY = "category"
+        const val TYPE_OF_SHOW = "TYPE_OF_SHOW"
     }
 }
