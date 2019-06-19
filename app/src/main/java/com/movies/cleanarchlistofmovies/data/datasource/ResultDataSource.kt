@@ -10,7 +10,7 @@ import javax.inject.Inject
 interface ResultTVMovieDataSourceFacade {
     fun createOrUpdate(list: List<ResultTVMovies>)
     fun getById(id: String): ResultTVMovies?
-    fun getAll(): List<ResultTVMovies>
+    fun getAllSortedByCategory(category: String): List<ResultTVMovies>
 }
 
 class RealmResultTVMovieDataSource @Inject constructor(
@@ -33,10 +33,13 @@ class RealmResultTVMovieDataSource @Inject constructor(
                 return output?.let { mapper.transform(output) }
             }
 
-    override fun getAll(): List<ResultTVMovies> {
+    override fun getAllSortedByCategory(category: String): List<ResultTVMovies> {
         Realm.getDefaultInstance().use { realmInstance ->
-            val output: RealmResults<RealmResultTVMovies> = realmInstance.where(RealmResultTVMovies::class.java)
+            val output: RealmResults<RealmResultTVMovies> = realmInstance
+                    .where(RealmResultTVMovies::class.java)
+                    .sort(category)
                     .findAll()
+
             return mapper.transform(output)
         }
     }

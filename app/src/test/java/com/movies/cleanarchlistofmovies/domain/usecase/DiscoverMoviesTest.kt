@@ -3,7 +3,7 @@ package com.movies.cleanarchlistofmovies.domain.usecase
 import com.movies.cleanarchlistofmovies.domain.repositories.DiscoverMoviesRepoFacade
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.Single
+import io.reactivex.Flowable
 import org.junit.Before
 import org.junit.Test
 import org.mockito.InjectMocks
@@ -24,8 +24,8 @@ class DiscoverMoviesTest {
 
     @Test
     fun `when use case is invoked, invoke the repository to get the discover movies`() {
-        whenever(repo()).thenReturn(Single.just(listOf()))
+        whenever(repo("")).thenReturn(Flowable.just(listOf()))
         useCase()
-        verify(repo).invoke()
+        verify(repo).invoke("")
     }
 }

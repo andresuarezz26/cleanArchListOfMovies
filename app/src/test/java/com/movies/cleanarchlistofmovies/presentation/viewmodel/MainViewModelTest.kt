@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.movies.cleanarchlistofmovies.RxImmediateSchedulerRule
 import com.movies.cleanarchlistofmovies.domain.usecase.DiscoverTVShowAndMovies
 import com.nhaarman.mockitokotlin2.whenever
+import io.reactivex.Flowable
 import io.reactivex.Single
 import org.junit.Assert
 import org.junit.Rule
@@ -29,7 +30,7 @@ class MainViewModelTest {
 
     @Test
     fun `When getTVAndMovies get called and there are tv shows or movies, set value of observer`() {
-        whenever(discoverTVShowsAndMovies(DiscoverTVShowAndMovies.Param("popularity.asc"))).thenReturn(Single.just(listOf()))
+        whenever(discoverTVShowsAndMovies(DiscoverTVShowAndMovies.Param("category"))).thenReturn(Flowable.just(listOf()))
 
         mainViewModel.getMoviesAndTVShows()
 

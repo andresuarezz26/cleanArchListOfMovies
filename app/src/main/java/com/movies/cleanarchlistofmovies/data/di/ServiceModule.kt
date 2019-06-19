@@ -1,6 +1,6 @@
 package com.movies.cleanarchlistofmovies.data.di
 
-import com.movies.cleanarchlistofmovies.data.service.DiscoverMoviesServiceFacade
+import com.movies.cleanarchlistofmovies.data.service.DiscoverMoviesAndTVServiceFacade
 import com.movies.cleanarchlistofmovies.data.service.DiscoverMoviesService
 import dagger.Binds
 import dagger.Module
@@ -9,5 +9,5 @@ import dagger.Module
 abstract class ServiceModule {
 
     @Binds
-    abstract fun provideDiscoverMovies(impl: DiscoverMoviesService): DiscoverMoviesServiceFacade
+    abstract fun provideDiscoverMovies(impl: DiscoverMoviesService): DiscoverMoviesAndTVServiceFacade
 }
