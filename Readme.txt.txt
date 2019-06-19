@@ -34,6 +34,8 @@ sobre el ciclo de vida de los componentes de android. Las clases son:
 3. AppComponent de Dagger: acá se define el grafo que seguirá Dagger, el appComponent contiene todos los módulos de la aplicación
 4. ViewModelFactory:  se encarga de inyectar los view models dependendiendo del nombre de la clase
 
+Debido a la importancia que tiene el unit testing, todos los viewmodel, usecases, repositories y mappers tienen
+unit tests.
 
 
 1. Single responsability principle (SRP):
