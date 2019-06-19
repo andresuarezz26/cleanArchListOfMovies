@@ -1,5 +1,11 @@
 package com.movies.cleanarchlistofmovies.data.service
 
+import com.movies.cleanarchlistofmovies.data.Constants.CATEGORY_POPULAR
+import com.movies.cleanarchlistofmovies.data.Constants.CATEGORY_RELEASE_DATE
+import com.movies.cleanarchlistofmovies.data.Constants.CATEGORY_SERVICE_SORT_POPULAR
+import com.movies.cleanarchlistofmovies.data.Constants.CATEGORY_SERVICE_SORT_RELEASE_DATE
+import com.movies.cleanarchlistofmovies.data.Constants.CATEGORY_SERVICE_SORT_TOP_RATED
+import com.movies.cleanarchlistofmovies.data.Constants.CATEGORY_TOP_RATED
 import com.movies.cleanarchlistofmovies.data.api.DiscoverApi
 import com.movies.cleanarchlistofmovies.data.mapper.ResultMovieTVShowResponseMapper
 import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
@@ -24,7 +30,7 @@ class DiscoverService @Inject constructor(
     override fun invoke(typeOfShow: String, category: String) = retrofit.create(DiscoverApi::class.java)
             .get(
                     typeOfShow,
-                    category
+                    getCategoryToSort(category)
             ).map { response ->
                 val body = response.results
                 if (body != null) {
@@ -34,6 +40,15 @@ class DiscoverService @Inject constructor(
                 }
             }
             .subscribeOn(Schedulers.io())
+
+    private fun getCategoryToSort(category: String) = when (category) {
+        CATEGORY_POPULAR -> CATEGORY_SERVICE_SORT_POPULAR
+        CATEGORY_TOP_RATED -> CATEGORY_SERVICE_SORT_TOP_RATED
+        CATEGORY_RELEASE_DATE -> CATEGORY_SERVICE_SORT_RELEASE_DATE
+        else -> {
+            CATEGORY_SERVICE_SORT_POPULAR
+        }
+    }
 
     companion object {
         const val DISCOVER_SERVICE_EXCEPTION = "Discover exception error"

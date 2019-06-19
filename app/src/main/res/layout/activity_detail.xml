@@ -41,18 +41,39 @@
             tools:text="This is a description of how to get away with murder series tv show can increase the populality" />
 
         <TextView
-            android:id="@+id/textDescription"
+        android:id="@+id/textDescription"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="@string/text_vote_average"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="8.5" />
+
+        <TextView
+            android:id="@+id/textDetailVoteAverage"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:text="@string/text_vote_average"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="8.5" />
+
+        <TextView
+            android:id="@+id/textDescriptionVoteCount"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/vote_count"
             android:textSize="14sp"
             android:textStyle="bold"
             tools:text="8.5" />
 
         <TextView
-            android:id="@+id/textDetailVoteAverage"
+            android:id="@+id/textDetailVoteCount"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"

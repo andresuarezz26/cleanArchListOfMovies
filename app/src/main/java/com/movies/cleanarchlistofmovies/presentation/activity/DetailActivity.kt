@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_detail.imageDetailPoster
 import kotlinx.android.synthetic.main.activity_detail.textDetailOverview
 import kotlinx.android.synthetic.main.activity_detail.textDetailTitle
 import kotlinx.android.synthetic.main.activity_detail.textDetailVoteAverage
+import kotlinx.android.synthetic.main.activity_detail.textDetailVoteCount
 
 class DetailActivity : BaseActivity() {
 
@@ -36,6 +37,7 @@ class DetailActivity : BaseActivity() {
             textDetailTitle.text = show.title
             textDetailOverview.text = show.overview
             textDetailVoteAverage.text = show.voteAverage.toString()
+            textDetailVoteCount.text = show.voteCount.toString()
         }
     }
 

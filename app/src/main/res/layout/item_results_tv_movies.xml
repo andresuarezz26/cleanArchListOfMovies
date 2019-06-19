@@ -40,7 +40,6 @@
         android:ellipsize="end"
         android:maxLength="100"
         android:maxLines="2"
-        android:layout_marginStart="@dimen/general_margin_8"
         app:layout_constraintLeft_toRightOf="@+id/imageResultsPoster"
         app:layout_constraintTop_toBottomOf="@+id/textResultsTitle"
         tools:text="This is a description of how to get away with murder series tv show can increase the populality" />
@@ -48,14 +47,14 @@
     <TextView
         android:id="@+id/textResultsVoteAverage"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/general_margin_8"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginStart="@dimen/general_margin_8"
-        app:layout_constraintLeft_toRightOf="@+id/imageResultsPoster"
+        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textResultsOverview"
         tools:text="8.5" />
 
@@ -67,5 +66,15 @@
         android:background="@color/colorGray"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageResultsPoster" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/vote_average"
+        app:layout_constraintStart_toEndOf="@+id/imageResultsPoster"
+        app:layout_constraintTop_toBottomOf="@+id/textResultsOverview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

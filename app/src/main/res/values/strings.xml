@@ -2,4 +2,6 @@
     <string name="app_name">CleanArchListOfMovies</string>
     <string name="no_description">no content description</string>
     <string name="text_vote_average">Vote average:</string>
+    <string name="vote_average">Vote Average:</string>
+    <string name="vote_count">Vote count:</string>
 </resources>
