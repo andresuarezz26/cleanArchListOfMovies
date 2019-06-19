@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerItemResultsTvMovies"
     android:layout_width="match_parent"
@@ -10,29 +11,38 @@
 
     <ImageView
         android:id="@+id/imageResultsPoster"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/image_list_height"
-        android:layout_marginStart="@dimen/margin_image_list"
-        android:layout_marginTop="@dimen/general_margin_8"
-        android:layout_marginEnd="@dimen/margin_image_list"
+        android:layout_marginTop="8dp"
         android:contentDescription="@string/no_description"
-        android:scaleType="centerInside" />
+        android:scaleType="centerInside"
+        android:transitionName="path_transition"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textResultsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/general_margin_8"
+        android:layout_marginTop="@dimen/general_margin_8"
         android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@+id/imageResultsPoster"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Mock Title for a Show" />
 
     <TextView
         android:id="@+id/textResultsOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/general_margin_8"
         android:ellipsize="end"
         android:maxLength="100"
         android:maxLines="2"
+        android:layout_marginStart="@dimen/general_margin_8"
+        app:layout_constraintLeft_toRightOf="@+id/imageResultsPoster"
+        app:layout_constraintTop_toBottomOf="@+id/textResultsTitle"
         tools:text="This is a description of how to get away with murder series tv show can increase the populality" />
 
     <TextView
@@ -40,15 +50,22 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/general_margin_8"
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:layout_marginStart="@dimen/general_margin_8"
+        app:layout_constraintLeft_toRightOf="@+id/imageResultsPoster"
+        app:layout_constraintTop_toBottomOf="@+id/textResultsOverview"
         tools:text="8.5" />
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/strip_width_short"
         android:layout_marginTop="@dimen/general_margin_8"
-        android:background="@color/colorGray" />
+        android:background="@color/colorGray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageResultsPoster" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

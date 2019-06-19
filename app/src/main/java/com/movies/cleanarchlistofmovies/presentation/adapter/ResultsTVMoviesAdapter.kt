@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.movies.cleanarchlistofmovies.R
 import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
 
-class ResultsTVMoviesAdapter(private val listener: ((Int) -> Unit)?) : RecyclerView.Adapter<ResultsTVMoviesAdapter.ResultsTVMoviesVH>() {
+class ResultsTVMoviesAdapter(private val listener: ((Pair<Int, View>) -> Unit)?) : RecyclerView.Adapter<ResultsTVMoviesAdapter.ResultsTVMoviesVH>() {
 
     private var list = mutableListOf<ResultTVMovies>()
 
@@ -29,7 +29,7 @@ class ResultsTVMoviesAdapter(private val listener: ((Int) -> Unit)?) : RecyclerV
         holder.overview.text = element.overview ?: ""
         holder.voteAverage.text = element.voteAverage.toString()
         Glide.with(holder.image).load(element.posterPath).into(holder.image)
-        holder.container.setOnClickListener { listener?.invoke(element.id) }
+        holder.container.setOnClickListener { listener?.invoke(Pair(element.id, holder.image)) }
     }
 
     fun addAll(list: List<ResultTVMovies>) {

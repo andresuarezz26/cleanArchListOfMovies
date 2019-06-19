@@ -7,25 +7,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginStart="@dimen/margin_image_list"
         android:layout_marginEnd="@dimen/margin_image_list"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         tools:context=".presentation.activity.MainActivity">
 
         <ImageView
             android:id="@+id/imageDetailPoster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_list_height"
             android:layout_marginStart="@dimen/margin_image_list"
-
             android:layout_marginTop="@dimen/general_margin_8"
             android:layout_marginEnd="@dimen/margin_image_list"
             android:contentDescription="@string/no_description"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerInside"
+            android:transitionName="path_transition" />
 
         <TextView
             android:id="@+id/textDetailTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textSize="20sp"
@@ -34,13 +36,13 @@
 
         <TextView
             android:id="@+id/textDetailOverview"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="This is a description of how to get away with murder series tv show can increase the populality" />
 
         <TextView
             android:id="@+id/textDescription"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
@@ -51,7 +53,7 @@
 
         <TextView
             android:id="@+id/textDetailVoteAverage"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/general_margin_8"

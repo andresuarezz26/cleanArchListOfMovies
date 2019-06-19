@@ -1,9 +1,12 @@
 package com.movies.cleanarchlistofmovies.presentation.activity
 
 import android.os.Bundle
+import android.view.View
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.movies.cleanarchlistofmovies.R
+import com.movies.cleanarchlistofmovies.data.Constants
 import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
 import com.movies.cleanarchlistofmovies.presentation.adapter.ResultsTVMoviesAdapter
 import com.movies.cleanarchlistofmovies.presentation.extensions.observe
@@ -11,7 +14,6 @@ import com.movies.cleanarchlistofmovies.presentation.viewmodel.MainViewModel
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.recyclerViewResultsTVMovies
 import kotlinx.android.synthetic.main.activity_main.tabsMainActivity
-import com.movies.cleanarchlistofmovies.data.Constants as Constants
 
 class MainActivity : BaseActivity() {
 
@@ -32,7 +34,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initAdapter() {
-        mainAdapter = ResultsTVMoviesAdapter { onItemClick(it) }
+        mainAdapter = ResultsTVMoviesAdapter { (id, view) -> onItemClick(id, view) }
         recyclerViewResultsTVMovies.apply {
             layoutManager = LinearLayoutManager(context)
             this.adapter = mainAdapter
@@ -68,8 +70,9 @@ class MainActivity : BaseActivity() {
         })
     }
 
-    private fun onItemClick(showId: Int) {
-        startActivity(DetailActivity.startScreen(this.applicationContext, showId))
+    private fun onItemClick(showId: Int, view: View) {
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, "path_transition")
+        startActivity(DetailActivity.startScreen(this.applicationContext, showId), options.toBundle())
     }
 
     private fun onGetMoviesAndTVShows(list: List<ResultTVMovies>?) {
