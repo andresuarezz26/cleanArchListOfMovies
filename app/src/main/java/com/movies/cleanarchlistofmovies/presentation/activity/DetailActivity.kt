@@ -6,7 +6,6 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.movies.cleanarchlistofmovies.R
 import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
-import com.movies.cleanarchlistofmovies.presentation.BaseActivity
 import com.movies.cleanarchlistofmovies.presentation.extensions.observe
 import com.movies.cleanarchlistofmovies.presentation.viewmodel.DetailViewModel
 import dagger.android.AndroidInjection

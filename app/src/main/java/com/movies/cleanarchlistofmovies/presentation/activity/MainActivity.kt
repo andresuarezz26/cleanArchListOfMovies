@@ -2,14 +2,16 @@ package com.movies.cleanarchlistofmovies.presentation.activity
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.tabs.TabLayout
 import com.movies.cleanarchlistofmovies.R
 import com.movies.cleanarchlistofmovies.domain.ResultTVMovies
-import com.movies.cleanarchlistofmovies.presentation.BaseActivity
-import com.movies.cleanarchlistofmovies.presentation.ResultsTVMoviesAdapter
+import com.movies.cleanarchlistofmovies.presentation.adapter.ResultsTVMoviesAdapter
 import com.movies.cleanarchlistofmovies.presentation.extensions.observe
 import com.movies.cleanarchlistofmovies.presentation.viewmodel.MainViewModel
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.recyclerViewResultsTVMovies
+import kotlinx.android.synthetic.main.activity_main.tabsMainActivity
+import com.movies.cleanarchlistofmovies.data.Constants as Constants
 
 class MainActivity : BaseActivity() {
 
@@ -20,23 +22,54 @@ class MainActivity : BaseActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initTabs()
+        listenTabEvents()
+        initAdapter()
+        viewModel = viewModel(viewModelFactory) {
+            observe(listOfShows, ::onGetMoviesAndTVShows)
+        }
+        viewModel.getMoviesAndTVShows(Constants.CATEGORY_POPULAR)
+    }
+
+    private fun initAdapter() {
         mainAdapter = ResultsTVMoviesAdapter { onItemClick(it) }
         recyclerViewResultsTVMovies.apply {
             layoutManager = LinearLayoutManager(context)
             this.adapter = mainAdapter
         }
-        viewModel = viewModel(viewModelFactory) {
-            observe(listOfShows, ::onGetMoviesAndTVShows)
-        }
+    }
+
+    private fun initTabs() {
+        tabsMainActivity.addTab(tabsMainActivity.newTab().setText("Popular"))
+        tabsMainActivity.addTab(tabsMainActivity.newTab().setText("Top Rated"))
+        tabsMainActivity.addTab(tabsMainActivity.newTab().setText("Upcoming "))
+    }
+
+    private fun listenTabEvents() {
+        tabsMainActivity.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabUnselected(p0: TabLayout.Tab?) {
+                // Do nothing..
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.position?.let {
+                    when (it) {
+                        1 -> viewModel.getMoviesAndTVShows(Constants.CATEGORY_POPULAR)
+                        2 -> viewModel.getMoviesAndTVShows(Constants.CATEGORY_TOP_RATED)
+                        else -> viewModel.getMoviesAndTVShows(Constants.CATEGORY_RELEASE_DATE)
+                    }
+                }
+            }
+
+            override fun onTabReselected(p0: TabLayout.Tab?) {
+                // Do nothing..
+            }
+
+        })
     }
 
     private fun onItemClick(showId: Int) {
         startActivity(DetailActivity.startScreen(this.applicationContext, showId))
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.getMoviesAndTVShows()
     }
 
     private fun onGetMoviesAndTVShows(list: List<ResultTVMovies>?) {

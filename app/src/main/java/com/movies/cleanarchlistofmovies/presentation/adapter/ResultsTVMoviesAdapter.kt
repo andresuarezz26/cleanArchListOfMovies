@@ -1,4 +1,4 @@
-package com.movies.cleanarchlistofmovies.presentation
+package com.movies.cleanarchlistofmovies.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View

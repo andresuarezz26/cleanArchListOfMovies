@@ -2,7 +2,7 @@ package com.movies.cleanarchlistofmovies.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.movies.cleanarchlistofmovies.RxImmediateSchedulerRule
-import com.movies.cleanarchlistofmovies.domain.usecase.DiscoverTVShowAndMovies
+import com.movies.cleanarchlistofmovies.domain.usecase.DiscoverTVShowAndMoviesByCategory
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import org.junit.Assert
@@ -22,14 +22,14 @@ class MainViewModelTest {
     @Rule @JvmField var rule: TestRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var discoverTVShowsAndMovies: DiscoverTVShowAndMovies
+    private lateinit var discoverTVShowsAndMovies: DiscoverTVShowAndMoviesByCategory
 
     @InjectMocks
     private lateinit var mainViewModel: MainViewModel
 
     @Test
     fun `When getTVAndMovies get called and there are tv shows or movies, set value of observer`() {
-        whenever(discoverTVShowsAndMovies(DiscoverTVShowAndMovies.Param("popularity.asc"))).thenReturn(Single.just(listOf()))
+        whenever(discoverTVShowsAndMovies(DiscoverTVShowAndMoviesByCategory.Param("popularity.asc"))).thenReturn(Single.just(listOf()))
 
         mainViewModel.getMoviesAndTVShows()
 

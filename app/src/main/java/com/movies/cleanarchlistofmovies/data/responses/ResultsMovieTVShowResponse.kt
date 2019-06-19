@@ -2,7 +2,7 @@ package com.movies.cleanarchlistofmovies.data.responses
 
 import com.google.gson.annotations.SerializedName
 
-data class BaseResultsMovieTVShowResponse(val results: List<ResultsMovieTVShowResponse>)
+data class BaseResultsMovieTVShowResponse(val results: List<ResultsMovieTVShowResponse?>?)
 data class ResultsMovieTVShowResponse(
         @SerializedName("vote_count")
         val voteCount: Int,

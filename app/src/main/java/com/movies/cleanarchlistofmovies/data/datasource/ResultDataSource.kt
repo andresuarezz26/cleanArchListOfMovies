@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 interface ResultTVMovieDataSourceFacade {
     fun createOrUpdate(list: List<ResultTVMovies>)
-    fun getById(id: String): ResultTVMovies?
+    fun getById(id: Int): ResultTVMovies?
     fun getAll(): List<ResultTVMovies>
 }
 
@@ -25,7 +25,7 @@ class RealmResultTVMovieDataSource @Inject constructor(
         }
     }
 
-    override fun getById(id: String): ResultTVMovies? =
+    override fun getById(id: Int): ResultTVMovies? =
             Realm.getDefaultInstance().use { realmInstance ->
                 val output = realmInstance.where(RealmResultTVMovies::class.java)
                         .equalTo(RealmResultTVMovies.PRIMARY_KEY, id)

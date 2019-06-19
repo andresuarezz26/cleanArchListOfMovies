@@ -6,6 +6,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Named
 
 @Module
@@ -27,6 +28,7 @@ class ApiModule {
     @Provides
     fun provideHttpClient(): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
+        httpClient.connectTimeout(50, TimeUnit.SECONDS)
         httpClient.addInterceptor { chain ->
             val original = chain.request()
             val originalHttpUrl = original.url()

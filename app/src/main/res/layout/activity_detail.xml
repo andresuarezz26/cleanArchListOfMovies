@@ -7,6 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_image_list"
+        android:layout_marginEnd="@dimen/margin_image_list"
         android:orientation="vertical"
         tools:context=".presentation.activity.MainActivity">
 
@@ -15,15 +17,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_image_list"
+
             android:layout_marginTop="@dimen/general_margin_8"
             android:layout_marginEnd="@dimen/margin_image_list"
-            android:contentDescription="@string/no_description" />
+            android:contentDescription="@string/no_description"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/textDetailTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
             android:textStyle="bold"
             tools:text="Mock Title for a Show" />
 
@@ -34,10 +39,22 @@
             tools:text="This is a description of how to get away with murder series tv show can increase the populality" />
 
         <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/text_vote_average"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="8.5" />
+
+        <TextView
             android:id="@+id/textDetailVoteAverage"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/general_margin_8"
             android:gravity="center"
             android:textSize="20sp"
             android:textStyle="bold"

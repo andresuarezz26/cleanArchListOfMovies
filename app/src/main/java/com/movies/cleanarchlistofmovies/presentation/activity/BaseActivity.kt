@@ -1,4 +1,4 @@
-package com.movies.cleanarchlistofmovies.presentation
+package com.movies.cleanarchlistofmovies.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel

@@ -15,7 +15,7 @@ class DiscoverMoviesTest {
     @Mock
     private lateinit var repo: DiscoverMoviesRepoFacade
     @InjectMocks
-    private lateinit var useCase: DiscoverMovies
+    private lateinit var useCase: DiscoverTVShowAndMoviesByCategory
 
     @Before
     fun setUp() {
@@ -24,8 +24,12 @@ class DiscoverMoviesTest {
 
     @Test
     fun `when use case is invoked, invoke the repository to get the discover movies`() {
-        whenever(repo()).thenReturn(Single.just(listOf()))
-        useCase()
-        verify(repo).invoke()
+        whenever(repo(MOCK_CATEGORY)).thenReturn(Single.just(listOf()))
+        useCase(DiscoverTVShowAndMoviesByCategory.Param(MOCK_CATEGORY))
+        verify(repo).invoke(MOCK_CATEGORY)
+    }
+
+    companion object {
+        const val MOCK_CATEGORY = "popular"
     }
 }
